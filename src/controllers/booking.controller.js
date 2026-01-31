@@ -86,7 +86,8 @@ let createBooking = asyncHandler(async(req, res)=>{
     FIRST: "First"
 }
 
-let selectedClass = classMap[flightData.selectedClass.toUpperCase()]; 
+let selectedClass = flightData.selectedClass.charAt(0).toUpperCase() +
+  flightData.selectedClass.slice(1).toLowerCase();
 let priceNumber = Number(flightData.prices[selectedClass]); 
 if (isNaN(priceNumber)) throw new ApiError(400, "Invalid flight price");
 
