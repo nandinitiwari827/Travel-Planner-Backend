@@ -5,8 +5,11 @@ import cookieParser from "cookie-parser"
 let app=express()
 
 app.use(cors({
-     origin: true,
-     credentials: true
+    origin: [
+    "http://localhost:5173",
+    "https://travel-planner-app-peach.vercel.app"
+  ],
+  credentials: true
 }))
 
 app.use(express.json({limit: "500mb"}))
