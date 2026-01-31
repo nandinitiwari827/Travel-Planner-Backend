@@ -123,9 +123,8 @@ let loginUser=asyncHandler(async(req, res)=>{
     let loggedInUser=await User.findById(user._id).select("-password -refreshToken")
 
    let options={
-     httpOnly: true,
-     secure: true,
-     sameSite: "none"
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
    }
 
    return res.status(200).cookie("accessToken", accessToken, options)
@@ -172,9 +171,8 @@ let logoutUser = asyncHandler(async (req, res) => {
     )   
 
     let options={
-         httpOnly: true,
-         secure: true,
-         sameSite: "none"
+        httpOnly: true,
+        secure: true
     }
 
     return res.status(200)
